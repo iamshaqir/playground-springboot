@@ -1,0 +1,20 @@
+# Employee
+id: Long
+firstName: String
+lastName: String
+email: String
+hireDate: LocalDate
+salary: BigDecimal
+
+# FullTimeEmployee
+annualBonus: BigDecimal
+vacationDays: Integer
+
+# PartTimeEmployee
+hoursPerWeek: Integer
+hourlyRate: BigDecimal
+
+# Contractor
+contractCompany: String
+contractEndDate: LocalDate
+projectRate: BigDecimal
