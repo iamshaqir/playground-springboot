@@ -1,4 +1,4 @@
-package playground.entityinheritance.main;
+package playground;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaAuditing
 @SpringBootApplication
 @EnableTransactionManagement
-@EntityScan("playground.entityinheritance.mappedsuperclass")
-@ComponentScan(basePackages = "playground.entityinheritance.mappedsuperclass")
-@EnableJpaRepositories(basePackages = "playground.entityinheritance.mappedsuperclass")
+@EntityScan("playground.entityinheritance.composite")
+@ComponentScan(basePackages = "playground.entityinheritance.composite")
+@EnableJpaRepositories(basePackages = "playground.entityinheritance.composite")
 public class SbPlaygroundApplication {
 
     public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class SbPlaygroundApplication {
     }
 
 }
-
+//playground.entityinheritance.composite
 //playground.entityinheritance.mappedsuperclass
 //playground.entityinheritance.creditcard
 //playground.entityinheritance.vehicle.VehicleService
