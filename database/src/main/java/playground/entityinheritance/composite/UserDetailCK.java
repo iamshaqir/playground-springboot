@@ -9,17 +9,14 @@ public class UserDetailCK implements Serializable {
     private String address;
 
     @Override
-    public int hashCode() {
-        return Objects.hash(name, address);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserDetailCK that)) return false;
+        return Objects.equals(name, that.name) && Objects.equals(address, that.address);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-
-        if (!(obj instanceof UserDetailCK userDetailCK)) return false;
-
-        return this.name.equalsIgnoreCase(userDetailCK.name) &&
-                this.address.equalsIgnoreCase(userDetailCK.address);
+    public int hashCode() {
+        return Objects.hash(name, address);
     }
 }

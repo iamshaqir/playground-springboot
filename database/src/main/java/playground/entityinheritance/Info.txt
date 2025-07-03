@@ -1,0 +1,10 @@
+# Composite with @IdClass, @Embedded, @Embeddable
+1. Need to create a separate class.
+2. Need to implement serializable
+    Composite keys are custom classes, so if we want pass that in network it should be serializable as jpa needs to make
+    sure the composite class is serializable
+3. Override equals and hashcode()
+    JPA internally maintains FIRST LEVEL CACHING, and we can Implement SECOND LEVEL CACHING, these cache internally uses
+    HashMap and relies on key(generally primary key becomes the key), so to avoid collision proper equals() and
+    hashcode() needed.
+4. Should have default constructor
