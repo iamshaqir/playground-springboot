@@ -1,4 +1,4 @@
-package playground.mapping.onetomany;
+package playground.mapping.onetomany.uni;
 
 import java.util.List;
 

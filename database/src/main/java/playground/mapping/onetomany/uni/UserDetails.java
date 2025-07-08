@@ -1,4 +1,4 @@
-package playground.mapping.onetomany;
+package playground.mapping.onetomany.uni;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class UserDetails {
 
     private String phone;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "USER_ID", referencedColumnName = "userId")
     private List<OrderDetails> orderDetails = new ArrayList<>();
 

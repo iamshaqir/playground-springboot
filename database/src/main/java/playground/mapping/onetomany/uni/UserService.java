@@ -1,8 +1,9 @@
-package playground.mapping.onetomany;
+package playground.mapping.onetomany.uni;
 
 import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -25,6 +27,16 @@ public class UserService {
         UserDetails userDetails = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
         return userDetails.toUserDetailsDTO();
+    }
+
+    public UserDetails orphanRemoval(Long id) {
+        UserDetails userDetails = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
+        log.debug("Querying order table lazily ::::::");
+        List<OrderDetails> orderDetails = userDetails.getOrderDetails();
+        log.info("Removing order: {}", orderDetails.get(0));
+        orderDetails.remove(0);
+        return userRepository.save(userDetails);
     }
 
 

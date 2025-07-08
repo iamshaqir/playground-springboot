@@ -1,8 +1,8 @@
-package playground.mapping.onetomany;
+package playground.mapping.manytomany;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserDetails, Long> {
+public interface ProductRepository extends JpaRepository<ProductDetails, Long> {
 }

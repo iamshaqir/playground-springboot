@@ -14,9 +14,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaAuditing
 @SpringBootApplication
 @EnableTransactionManagement
-@EntityScan("playground.mapping.onetomany")
-@ComponentScan(basePackages = "playground.mapping.onetomany")
-@EnableJpaRepositories(basePackages = "playground.mapping.onetomany")
+@EntityScan("playground.mapping.rev")
+@ComponentScan(basePackages = "playground.mapping.rev")
+@EnableJpaRepositories(basePackages = "playground.mapping.rev")
 public class SbPlaygroundApplication {
 
     public static void main(String[] args) {
@@ -41,11 +41,16 @@ public class SbPlaygroundApplication {
     #MAPPING
     playground.mapping.onetoone.uni
     playground.mapping.onetoone.bi
-    playground.mapping.onetomany
+    playground.mapping.onetomany.uni
+    playground.mapping.onetomany.bi
+    playground.mapping.manytoone
+    playground.mapping.manytomany
+    playground.mapping.clubbed
+    playground.mapping.rev
 
     #Hibernate Inheritance
-    playground.entityinheritance.composite
     playground.entityinheritance.mappedsuperclass
+    playground.entityinheritance.composite
     playground.entityinheritance.creditcard
     playground.entityinheritance.vehicle.VehicleService
  */

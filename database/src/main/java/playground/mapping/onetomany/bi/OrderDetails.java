@@ -1,4 +1,4 @@
-package playground.mapping.onetomany;
+package playground.mapping.onetomany.bi;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,4 +21,8 @@ public class OrderDetails {
     private String productName;
     private String category;
     private BigDecimal price;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", referencedColumnName = "userId")
+    private UserDetails userDetails;
 }

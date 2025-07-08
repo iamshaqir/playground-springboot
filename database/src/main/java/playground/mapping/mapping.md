@@ -10,7 +10,7 @@
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private UserAddress userAddress;
     ```
-
+- We can also make use of `@MapsId` which creates only one column in parent table, combines it as primary key and foreign key, rather creating a new column
 By default, jpa will refer primary key of child table, what if there is composite key in child table?? 
 - Create a class with composite key using `@IdClass` or `@Embeddable` and `@EmbeddedId` concepts with `@JoinColumns` as
     ```java

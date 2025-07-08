@@ -1,4 +1,4 @@
-package playground.mapping.onetomany;
+package playground.mapping.manytomany;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,20 +11,18 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/users")
-public class UserController {
+@RequestMapping("/api/products")
+public class ProductController {
 
-    private final UserService userService;
+    private final ProductService productService;
 
     @GetMapping
-    public ResponseEntity<List<UserDetails>> findAll() {
-        return ResponseEntity.ok(userService.findAll());
+    public ResponseEntity<List<ProductDetails>> findAll() {
+        return ResponseEntity.ok(productService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDetailsDTO> findById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(userService.findById(id));
+    public ResponseEntity<ProductDetails> findById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(productService.findById(id));
     }
-
-
 }
