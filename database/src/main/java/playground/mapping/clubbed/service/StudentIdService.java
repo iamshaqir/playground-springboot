@@ -56,4 +56,11 @@ public class StudentIdService {
         }
         studentIdCardRepository.deleteById(id);
     }
+
+    public StudentIdCardDTO updateStudentIdCard(Long id, StudentIdCard studentIdCard) {
+        StudentIdCard savedStudentIdCard = studentIdCardRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Couldn't find Student id card with ID: " + id));
+        savedStudentIdCard.setStudent(null);
+        return studentIdCardRepository.save(savedStudentIdCard).toStudentIdCardDTO();
+    }
 }

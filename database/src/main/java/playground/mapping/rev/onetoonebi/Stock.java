@@ -21,10 +21,11 @@ public class Stock {
     @Enumerated(EnumType.STRING)
     private StockStatus stockStatus;
 
-    @OneToOne(mappedBy = "stock")
+    @OneToOne(mappedBy = "stock", fetch = FetchType.LAZY)
     private Product product;
 
     public StockDTO toStockDTO() {
         return new StockDTO(this);
     }
+
 }

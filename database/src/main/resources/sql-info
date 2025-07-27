@@ -1,0 +1,3 @@
+truncate table product restart identity;
+
+truncate table stock restart identity cascade;

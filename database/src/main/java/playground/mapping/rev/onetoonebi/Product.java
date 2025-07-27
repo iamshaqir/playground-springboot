@@ -23,11 +23,22 @@ public class Product {
 
     private BigDecimal productPrice;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "stock_id", referencedColumnName = "stockId")
     private Stock stock;
 
     public ProductDTO toProductDTO() {
         return new ProductDTO(this);
+    }
+
+    public void setStock(Stock stock) {
+        // if setting new stock for existing product i.e. updating existing product, remove first product
+        if (stock != null && stock.getProduct().equals(this)) {
+            stock.setProduct(null);
+        }
+        this.stock = stock;
+        if (stock != null) {
+            stock.setProduct(this);
+        }
     }
 }

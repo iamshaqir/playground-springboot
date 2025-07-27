@@ -1,12 +1,12 @@
 package playground.mapping.clubbed.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import playground.mapping.clubbed.dto.StudentDTO;
 import playground.mapping.clubbed.dto.StudentIdCardDTO;
-import playground.mapping.clubbed.model.Student;
+import playground.mapping.clubbed.model.StudentIdCard;
 import playground.mapping.clubbed.service.StudentIdService;
 
 @RestController
@@ -23,6 +23,12 @@ public class StudentIdCardController {
     @GetMapping("/{id}")
     public ResponseEntity<StudentIdCardDTO> findById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(studentIdService.findById(id), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<StudentIdCardDTO> updateStudentIdCard(@PathVariable("id") Long id,
+                                                                @Valid @RequestBody StudentIdCard studentIdCard) {
+        return new ResponseEntity<>(studentIdService.updateStudentIdCard(id, studentIdCard), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{id}")

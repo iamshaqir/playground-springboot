@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import playground.mapping.clubbed.dto.StudentDTO;
 import playground.mapping.clubbed.model.Student;
-import playground.mapping.clubbed.model.StudentIdCard;
 import playground.mapping.clubbed.repository.StudentRepository;
 
 import java.util.List;
