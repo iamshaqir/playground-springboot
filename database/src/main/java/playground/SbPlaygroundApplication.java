@@ -1,7 +1,6 @@
 package playground;
 
 import com.github.javafaker.Faker;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -14,23 +13,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaAuditing
 @SpringBootApplication
 @EnableTransactionManagement
-@EntityScan("playground.mapping.rev")
-@ComponentScan(basePackages = "playground.mapping.rev")
-@EnableJpaRepositories(basePackages = "playground.mapping.rev")
+@EntityScan("playground.mapping.pg.rv1.n21")
+@ComponentScan(basePackages = "playground.mapping.pg.rv1.n21")
+@EnableJpaRepositories(basePackages = "playground.mapping.pg.rv1.n21")
 public class SbPlaygroundApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SbPlaygroundApplication.class, args);
     }
-
-    @Bean
-    public CommandLineRunner controller() {
-        return args -> {
-//            userService.saveAll(); UserService userService
-//            orderService.saveAll(); OrderService orderService
-        };
-    }
-
     @Bean
     public Faker faker() {
         return new Faker();
@@ -47,6 +37,8 @@ public class SbPlaygroundApplication {
     playground.mapping.manytomany
     playground.mapping.clubbed
     playground.mapping.rev
+    playground.mapping.pg.rv1.121
+    playground.mapping.pg.rv1.n21
 
     #Hibernate Inheritance
     playground.entityinheritance.mappedsuperclass

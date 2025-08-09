@@ -21,7 +21,7 @@ public class Stock {
     @Enumerated(EnumType.STRING)
     private StockStatus stockStatus;
 
-    @OneToOne(mappedBy = "stock", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "stock")
     private Product product;
 
     public StockDTO toStockDTO() {

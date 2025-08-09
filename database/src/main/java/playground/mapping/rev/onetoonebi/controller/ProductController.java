@@ -22,16 +22,20 @@ public class ProductController {
         return new ResponseEntity<>(productService.saveOne(), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ProductDTO> findById(@PathVariable("id") Integer id) {
-        return new ResponseEntity<>(productService.findById(id), HttpStatus.OK);
-    }
-
     @PostMapping("/create/{size}")
     public ResponseEntity<List<ProductDTO>> save(@PathVariable("size") Integer size) {
         return new ResponseEntity<>(productService.save(size), HttpStatus.CREATED);
     }
 
+    @GetMapping("/eager/{id}")
+    public ResponseEntity<ProductDTO> findByIdEager(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(productService.findByIdEager(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/lazy/{id}")
+    public ResponseEntity<ProductDTO> findByIdLazy(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(productService.findByIdLazy(id), HttpStatus.OK);
+    }
     @GetMapping
     public ResponseEntity<List<ProductDTO>> findAll() {
         return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
@@ -55,3 +59,9 @@ public class ProductController {
     }
 
 }
+
+/*
+--  SELECT p1_0.product_id, p1_0.product_name, s1_0.stock_id, s1_0.stock_quantity
+    FROM product p1_0 LEFT OUTER JOIN stock s1_0
+    ON s1_0.stock_id = p1_0.stock_id
+ */

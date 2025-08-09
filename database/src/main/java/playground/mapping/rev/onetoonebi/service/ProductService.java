@@ -2,6 +2,7 @@ package playground.mapping.rev.onetoonebi.service;
 
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import playground.mapping.rev.onetoonebi.Product;
 import playground.mapping.rev.onetoonebi.Stock;
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.IntStream;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -51,7 +53,9 @@ public class ProductService {
     }
 
     public List<ProductDTO> findAll() {
-        return mapToProductDTO(productRepository.findAll());
+        List<Product> allById = productRepository.findAllById(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15));
+//        productRepository.findAllEagerly();
+        return mapToProductDTO(allById);
     }
 
     private List<ProductDTO> mapToProductDTO(List<Product> products) {
@@ -81,8 +85,18 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public ProductDTO findById(Integer id) {
+    public ProductDTO findByIdEager(Integer id) {
         Product product = productRepository.findById(id).orElseThrow();
+        log.info("Product fetched : {}", product.getProductName());
+        log.info("Accessing Stock Quantity : {}", product.getStock().getStockQuantity());
+        return product.toProductDTO();
+    }
+
+    public ProductDTO findByIdLazy(Integer id) {
+        Product product = productRepository.findById(id).orElseThrow();
+        log.info("Product fetched : {}", product.getProductName());
+//        log.info("\n--- Lazily fetching stock data now ---");
+//        log.info("Accessing Stock Quantity : {}", product.getStock().getStockQuantity());
         return product.toProductDTO();
     }
 }

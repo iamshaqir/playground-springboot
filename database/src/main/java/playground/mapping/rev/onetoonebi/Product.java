@@ -2,10 +2,14 @@ package playground.mapping.rev.onetoonebi;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import playground.mapping.rev.onetoonebi.dto.ProductDTO;
 
 import java.math.BigDecimal;
 
+@Slf4j
 @Getter
 @Setter
 @Entity
@@ -30,7 +34,6 @@ public class Product {
     public ProductDTO toProductDTO() {
         return new ProductDTO(this);
     }
-
     public void setStock(Stock stock) {
         // if setting new stock for existing product i.e. updating existing product, remove first product
         if (stock != null && stock.getProduct().equals(this)) {
