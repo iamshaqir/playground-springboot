@@ -1,4 +1,4 @@
-package playground.mapping.pg.rv1;
+package playground.mapping.pg.rv1.one2one;
 
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
@@ -13,23 +13,23 @@ import java.util.stream.IntStream;
 @RequiredArgsConstructor
 public class PhoneService {
 
-    private final playground.mapping.pg.rv1.PhoneRepository phoneRepository;
+    private final PhoneRepository phoneRepository;
     private final Faker faker;
 
-    public List<playground.mapping.pg.rv1.PhoneDTO> save(Integer size) {
+    public List<PhoneDTO> save(Integer size) {
 
-        List<playground.mapping.pg.rv1.Phone> phones = IntStream.range(0, size)
+        List<Phone> phones = IntStream.range(0, size)
                 .mapToObj(i -> createPhone())
                 .toList();
         return mapToPhoneDTO(phoneRepository.saveAll(phones));
     }
 
-    private playground.mapping.pg.rv1.Phone createPhone() {
-        playground.mapping.pg.rv1.Phone phone = playground.mapping.pg.rv1.Phone.builder()
+    private Phone createPhone() {
+        Phone phone = Phone.builder()
                 .number(faker.phoneNumber().phoneNumber())
                 .build();
 
-        playground.mapping.pg.rv1.PhoneDetails phoneDetails = playground.mapping.pg.rv1.PhoneDetails.builder()
+        PhoneDetails phoneDetails = PhoneDetails.builder()
                 .provider(faker.company().name())
                 .technology(faker.internet().domainName())
                 .build();
@@ -38,9 +38,9 @@ public class PhoneService {
         return phone;
     }
 
-    private List<playground.mapping.pg.rv1.PhoneDTO> mapToPhoneDTO(List<playground.mapping.pg.rv1.Phone> phones) {
+    private List<PhoneDTO> mapToPhoneDTO(List<Phone> phones) {
         return phones.stream()
-                .map(playground.mapping.pg.rv1.Phone::toPhoneDTO)
+                .map(Phone::toPhoneDTO)
                 .toList();
     }
 

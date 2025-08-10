@@ -1,9 +1,9 @@
-package playground.mapping.pg.rv1;
+package playground.mapping.pg.rv1.one2one;
 
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import playground.mapping.pg.rv1.n21.Person;
+import playground.mapping.pg.rv1.many2one.Person;
 
 @Slf4j
 @Getter
@@ -20,16 +20,15 @@ public class Phone {
     @Column(name = "`number`")
     private String number;
 
-    private Person person;
     @OneToOne(
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             mappedBy = "phone"
     )
-    private playground.mapping.pg.rv1.PhoneDetails details;
+    private PhoneDetails details;
 
-    public void addDetails(playground.mapping.pg.rv1.PhoneDetails details) {
+    public void addDetails(PhoneDetails details) {
         details.setPhone(this);
         this.details = details;
     }
@@ -41,7 +40,7 @@ public class Phone {
         }
     }
 
-    public playground.mapping.pg.rv1.PhoneDTO toPhoneDTO() {
-        return new playground.mapping.pg.rv1.PhoneDTO(this);
+    public PhoneDTO toPhoneDTO() {
+        return new PhoneDTO(this);
     }
 }

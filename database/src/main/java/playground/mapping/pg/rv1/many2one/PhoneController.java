@@ -1,4 +1,4 @@
-package playground.mapping.pg.rv1;
+package playground.mapping.pg.rv1.many2one;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/phone")
+@RequestMapping("/api/phones")
 public class PhoneController {
 
-    private final playground.mapping.pg.rv1.PhoneService phoneService;
+    private final PhoneService phoneService;
 
     @PostMapping("/create/{size}")
-    public ResponseEntity<List<playground.mapping.pg.rv1.PhoneDTO>> save(@PathVariable("size") Integer size) {
+    public ResponseEntity<List<PhoneDTO>> save(@PathVariable("size") Integer size) {
         return new ResponseEntity<>(phoneService.save(size), HttpStatus.CREATED);
     }
 }

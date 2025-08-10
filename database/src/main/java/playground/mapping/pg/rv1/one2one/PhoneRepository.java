@@ -1,4 +1,4 @@
-package playground.mapping.pg.rv1.n21;
+package playground.mapping.pg.rv1.one2one;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

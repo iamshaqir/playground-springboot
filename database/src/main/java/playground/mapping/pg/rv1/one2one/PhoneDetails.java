@@ -1,4 +1,4 @@
-package playground.mapping.pg.rv1;
+package playground.mapping.pg.rv1.one2one;
 
 
 import jakarta.persistence.*;
@@ -20,7 +20,8 @@ public class PhoneDetails {
 
     private String technology;
 
+    // Owning side, has foreign key
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "phone_id")
-    private playground.mapping.pg.rv1.Phone phone;
+    private Phone phone;
 }

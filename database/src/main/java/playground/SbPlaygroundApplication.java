@@ -13,9 +13,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaAuditing
 @SpringBootApplication
 @EnableTransactionManagement
-@EntityScan("playground.mapping.pg.rv1.n21")
-@ComponentScan(basePackages = "playground.mapping.pg.rv1.n21")
-@EnableJpaRepositories(basePackages = "playground.mapping.pg.rv1.n21")
+@EntityScan("playground.mapping.pg.rv1.one2many")
+@ComponentScan(basePackages = "playground.mapping.pg.rv1.one2many")
+@EnableJpaRepositories(basePackages = "playground.mapping.pg.rv1.one2many")
 public class SbPlaygroundApplication {
 
     public static void main(String[] args) {
@@ -37,6 +37,7 @@ public class SbPlaygroundApplication {
     playground.mapping.manytomany
     playground.mapping.clubbed
     playground.mapping.rev
+    playground.mapping.rev.onetoonebi
     playground.mapping.pg.rv1.121
     playground.mapping.pg.rv1.n21
 

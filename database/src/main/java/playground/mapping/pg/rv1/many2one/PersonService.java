@@ -1,4 +1,4 @@
-package playground.mapping.pg.rv1.n21;
+package playground.mapping.pg.rv1.many2one;
 
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class PersonService {
     private Person createPerson() {
         return Person.builder()
                 .firstname(faker.name().firstName())
-                .firstname(faker.name().lastName())
+                .lastname(faker.name().lastName())
                 .build();
     }
 

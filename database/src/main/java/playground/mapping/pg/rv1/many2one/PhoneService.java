@@ -1,4 +1,4 @@
-package playground.mapping.pg.rv1.n21;
+package playground.mapping.pg.rv1.many2one;
 
 import com.github.javafaker.Faker;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,8 @@ public class PhoneService {
     public List<PhoneDTO> save(Integer size) {
         return personRepository.findAll().stream()
                 .flatMap(person -> {
-                    int noOfPhones = RandomGenerator.getDefault().nextInt(size / 20);
+                    int noOfPhones = RandomGenerator.getDefault().nextInt(size / 20) + 1;
+                    log.info("Created {} phones for Person : {}", noOfPhones, person);
                     List<Phone> phones = createPhone(person, noOfPhones);
                     return phoneRepository.saveAll(phones).stream();
                 })

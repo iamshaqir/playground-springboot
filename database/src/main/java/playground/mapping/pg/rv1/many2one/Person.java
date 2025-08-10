@@ -1,4 +1,4 @@
-package playground.mapping.pg.rv1.n21;
+package playground.mapping.pg.rv1.many2one;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "Person")
+@ToString
 public class Person {
 
     @Id

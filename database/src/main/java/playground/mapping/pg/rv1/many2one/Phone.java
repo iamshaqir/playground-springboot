@@ -1,4 +1,4 @@
-package playground.mapping.pg.rv1.n21;
+package playground.mapping.pg.rv1.many2one;
 
 import jakarta.persistence.*;
 import lombok.*;
