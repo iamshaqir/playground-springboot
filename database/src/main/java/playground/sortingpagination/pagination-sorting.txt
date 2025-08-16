@@ -1,0 +1,13 @@
+To resolve this, you need to use the correct URL encoding for these characters:
+
+[ should be encoded as %5B
+
+] should be encoded as %5D
+
+{ should be encoded as %7B
+
+} should be encoded as %7D
+
+" should be encoded as %22
+
+, should be encoded as %2C

@@ -8,14 +8,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import static org.springframework.data.web.config.EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO;
 
 @EnableJpaAuditing
 @SpringBootApplication
 @EnableTransactionManagement
-@EntityScan("playground.mapping.pg.rv1.one2many")
-@ComponentScan(basePackages = "playground.mapping.pg.rv1.one2many")
-@EnableJpaRepositories(basePackages = "playground.mapping.pg.rv1.one2many")
+@EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO)
+@EntityScan("playground.sortingpagination.ex2")
+@ComponentScan(basePackages = "playground.sortingpagination.ex2")
+@EnableJpaRepositories(basePackages = "playground.sortingpagination.ex2")
 public class SbPlaygroundApplication {
 
     public static void main(String[] args) {
@@ -28,6 +32,9 @@ public class SbPlaygroundApplication {
 
 }
 /*
+    # PAGINATION and SORTING
+    playground.sortingpagination
+
     #MAPPING
     playground.mapping.onetoone.uni
     playground.mapping.onetoone.bi
@@ -38,8 +45,10 @@ public class SbPlaygroundApplication {
     playground.mapping.clubbed
     playground.mapping.rev
     playground.mapping.rev.onetoonebi
-    playground.mapping.pg.rv1.121
-    playground.mapping.pg.rv1.n21
+    playground.mapping.pg.rv1.one2one
+    playground.mapping.pg.rv1.many2one
+    playground.mapping.pg.rv1.one2many
+    playground.mapping.pg.rv1.many2many
 
     #Hibernate Inheritance
     playground.entityinheritance.mappedsuperclass

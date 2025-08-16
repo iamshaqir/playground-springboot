@@ -21,10 +21,13 @@ public class Demo implements CommandLineRunner {
 
     @Override
     @Transactional
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
+        // OneToMany and ManyToOne relationship between Department and Employee
 
+        // Employee - Owning side
+        // Department - Inverse side
         Department hr = buildDepartment();
-        List<Employee> employees = createEmployee(5);
+        List<Employee> employees = createEmployee(hr.getNumberOfEmployees());
         employees.forEach(hr::addEmployee);
         departmentRepository.save(hr);
 
@@ -36,14 +39,23 @@ public class Demo implements CommandLineRunner {
         log.info("--- Fetching Employee details lazily ---");
         hr.getEmployees().forEach(System.out::println);
 
-        log.info("--- Orphan removal example---");
+        log.info("--- Orphan removal example ---");
         log.info("--- Getting employee from database ---");
-        Employee firstEmployee = employees.stream().findFirst().orElseThrow();
+        Employee firstEmployee = employees.stream().findAny().orElseThrow();
         Employee employee = employeeRepository.findById(firstEmployee.getId()).orElseThrow();
+
         Department department = employee.getDepartment();
         log.info("Department of employee to be removed: {}", department);
-        hrDept.removeEmployee(employee); // Removing employee using orphan removal
+
+        // Removing employee using orphan removal
+        hrDept.removeEmployee(employee);
         log.info("Removing Employee: {}", firstEmployee);
+
+        // Bi-directional mapping fetching department of employee
+        Employee randomEmployee = employees.stream().findAny().orElseThrow();
+        Department departmentOfRandomEmployee = employeeRepository.findDepartmentByEmployeeName(randomEmployee.getName());
+        log.info("--- Bidirectional mapping, getting Department:{},\n For Employee:{} ---",
+                departmentOfRandomEmployee, randomEmployee);
     }
 
     private List<Employee> createEmployee(int size) {
