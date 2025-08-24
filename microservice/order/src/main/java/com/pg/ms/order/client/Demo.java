@@ -17,14 +17,16 @@ public class Demo implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+    }
 
-//        log.info("--- Creating Venues ---");
-//        Integer venueCount = inventoryServiceClient.createVenues();
-//        log.info("--- created {} Venues ---", venueCount);
-//
-//        log.info("--- Creating Events ---");
-//        Integer eventCount = inventoryServiceClient.createEvents();
-//        log.info("--- created {} Events ---", eventCount);
+    private void inventorDemo() {
+        log.info("--- Creating Venues ---");
+        Integer venueCount = inventoryServiceClient.createVenues();
+        log.info("--- created {} Venues ---", venueCount);
+
+        log.info("--- Creating Events ---");
+        Integer eventCount = inventoryServiceClient.createEvents();
+        log.info("--- created {} Events ---", eventCount);
 
         log.info("--- Getting Inventory for Event 1 ---");
         InventoryResponse inventory = inventoryServiceClient.getInventory(1L);

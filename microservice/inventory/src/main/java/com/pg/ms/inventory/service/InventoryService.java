@@ -36,6 +36,11 @@ public class InventoryService {
     }
 
     public EventDTO findByEventId(final Long eventId) {
+        try {
+            Thread.sleep(60000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         Event event = eventRepository.findById(eventId).orElseThrow(() -> {
             log.error("No element found with [Event id]: {}", eventId);
             return new NoSuchElementException("No element with Event id" + eventId);
